@@ -1,0 +1,15 @@
+version: 0.2
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+      - apt-get update
+      - apt-get install -y docker
+  build:
+    commands:
+      - echo Building the Docker image...
+      - docker build -t niveditha052/website .
+      - echo Logging in to Docker Hub...
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - echo Pushing the image to Docker Hub...
+      - docker push niveditha052/website
